@@ -1,0 +1,18 @@
+﻿@page "{id:int}"
+@model WebApplication50.Pages.ListFormModel
+@{
+    Layout = null;
+}
+<div id="ListFormElements">
+    <div id="ListFormToolbar"></div>
+   @* <div id="filter"></div>*@
+    <div id="grid"></div>
+</div>
+@*<span>Model:@Model.Id</span>*@
+
+<script src="~/scripts/common/listform.js?v=@Guid.NewGuid().ToString()"></script>
+<script>
+    var list = new $.Set.ListForm($("#ListFormElements"));
+    list.InitEvents();
+    $.Set.ServiceUrl='@Request.Host';
+</script>
