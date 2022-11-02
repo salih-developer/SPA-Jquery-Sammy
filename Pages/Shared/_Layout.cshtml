@@ -6,8 +6,10 @@
     <title>@ViewData["Title"] - WebApplication50</title>
     <link href="~/kendoui-styles/kendo.common.min.css" rel="stylesheet" />
     <link href="~/kendoui-styles/kendo.bootstrap-v4.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&amp;display=swap" rel="stylesheet">
     <script src="~/scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/scripts/jquery.cookie.js"></script>
     <script src="~/kendoui-js/jszip.min.js"></script>
     <script src="~/kendoui-js/kendo.all.min.js"></script>
     <script src="~/scripts/sammy.min.js"></script>
@@ -21,8 +23,11 @@
         }
 
         html, body {
+            font-family: Calibri;
             min-height: 100% !important;
             height: 100%;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100% ;
         }
 
         .k-drawer-container {
@@ -77,11 +82,6 @@
             font-size: 20px;
         }
 
-        .k-toolbar {
-            padding:1px 5px;
-            gap: 2px;
-        }
-
         .k-rounded-md {
              border-radius: 0px;
         }
@@ -90,10 +90,11 @@
           margin-top: 5px; 
         }
     </style>
+    
     @await RenderSectionAsync("Scripts", required: true)
 </head>
 <body>
-    <div class="container" style=" min-height: 100% !important;height: 100%;">
+    <div class="container-fluid" style=" min-height: 100% !important;height: 100%;padding:1px">
         <main role="main" id='MainContent' class="pb-3" style=" min-height: 100% !important;height: 100%;">
             <div id="toolbar"></div>
             <div id="drawer">
@@ -112,6 +113,13 @@
             var routing = new Routing('@Url.Content("~/")', '#page', '');
             routing.init();
         });
+        if ($.cookie('theme')!=='')
+        {
+            var css = $('link[href^="/kendoui-styles/"]')[1];
+            css.href = '/kendoui-styles/' + $.cookie('theme') + '.css';
+        }
+        
+        $.Set.ServiceUrl = '@Context.Request.Host';
     </script>
 </body>
 </html>

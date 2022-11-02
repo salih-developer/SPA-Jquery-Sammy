@@ -1,6 +1,6 @@
 ﻿$(function () {
     $("#drawer").kendoDrawer({
-        template: " <div id='treeview-left'></div>",
+        template: "  <input class='form-control k- textbox' placeholder='Search' /> <div id='treeview-left'></div>",
         mode: "push",
         mini: false,
         itemClick: function (e) {
@@ -38,6 +38,7 @@
             { text: "High Constrast", value: "kendo.highcontrast.min" },
             { text: "Office", value: "kendo.office365.min" },
             { text: "material", value: "kendo.material-v2.min" },
+            { text: "Set", value: "Set" },
             //{ text: "Rectangle", value: "" },
             //{ text: "Rectangle", value: "" },
             //{ text: "Rectangle", value: "" },
@@ -45,6 +46,7 @@
         change: function () {
             var css = $('link[href^="/kendoui-styles/"]')[1];
             css.href = '/kendoui-styles/' + this.value() + '.css';
+            $.cookie('theme', this.value());
         }
     });
     var inlineDefault = new kendo.data.HierarchicalDataSource({
@@ -69,7 +71,12 @@
             }
         ]
     });
+    $("input").on("input", function () {
+        var query = this.value.toLowerCase();
+        var dataSource = $("#treeview-left").data("kendoTreeView").dataSource;
 
+        filter(dataSource, query);
+    });
     $("#treeview-left").kendoTreeView({
         dataSource: inlineDefault,
         select: function (e) {
@@ -80,6 +87,32 @@
                 app.setLocation("#/ListForm/" + dataItem.id);
         }
     });
+    // Sets the "hidden" field on items that match the query.
+    function filter(dataSource, query) {
+        var hasVisibleChildren = false;
+        var data = dataSource instanceof kendo.data.HierarchicalDataSource && dataSource.data();
 
+        for (var i = 0; i < data.length; i++) {
+            var item = data[i];
+            var text = item.text.toLowerCase();
+            var itemVisible =
+                query === true // parent already matches
+                || query === "" // query is empty
+                || text.indexOf(query) >= 0; // item text matches query
+
+            var anyVisibleChildren = filter(item.children, itemVisible || query); // pass true if parent matches
+
+            hasVisibleChildren = hasVisibleChildren || anyVisibleChildren || itemVisible;
+
+            item.hidden = !itemVisible && !anyVisibleChildren;
+        }
+
+        if (data) {
+            // Re-apply the filter on the children.
+            dataSource.filter({ field: "hidden", operator: "neq", value: true });
+        }
+
+        return hasVisibleChildren;
+    }
     $("#drawer").data().kendoDrawer.show();
 });

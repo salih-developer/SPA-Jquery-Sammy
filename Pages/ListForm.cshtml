@@ -3,16 +3,56 @@
 @{
     Layout = null;
 }
-<div id="ListFormElements">
-    <div id="ListFormToolbar"></div>
-   @* <div id="filter"></div>*@
-    <div id="grid"></div>
-</div>
-@*<span>Model:@Model.Id</span>*@
+<style>
 
+    .listformToolbar {
+    }
+
+        .listformToolbar.k-toolbar {
+            margin: 1px;
+            padding: 0px;
+        }
+
+
+            .listformToolbar.k-toolbar > .k-button {
+                border-radius: 0px;
+                min-width: 100px;
+                min-height: 50px;
+                margin: 0px;
+                align-items: inherit;
+            }
+
+            .listformToolbar.k-toolbar .k-button:hover {
+                background-color: #df8649;
+                text-decoration: none;
+            }
+
+    .k-form-fieldset{
+        margin:auto;
+        width: 100%;
+    }
+
+    .k-form-field{
+        margin: 0 0 5px;
+    }
+    .k-form-legend {
+        visibility:hidden;
+    }
+
+    .k-form-buttons.k-buttons-end{
+        visibility: hidden;
+    }
+
+    .k-expander-content{
+        padding:0px;
+    }
+</style>
+<div id="ListFormElements">
+    <div id="ListFormToolbar" class="listformToolbar"></div>
+     <div id="brazil">
+        <form id="filterform" style="padding:5px;background-color: #f9f9f9;"></form>
+    </div>
+        <div id="grid"></div>
+    
+</div>
 <script src="~/scripts/common/listform.js?v=@Guid.NewGuid().ToString()"></script>
-<script>
-    var list = new $.Set.ListForm($("#ListFormElements"));
-    list.InitEvents();
-    $.Set.ServiceUrl='@Request.Host';
-</script>

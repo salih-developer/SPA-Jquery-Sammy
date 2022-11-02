@@ -3,4 +3,115 @@
 @{
     Layout = null;
 }
-<span>@Model.Id</span>
+<html class="k-webkit k-webkit106">
+<head>
+    <link href="~/kendoui-styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/kendoui-styles/kendo.bootstrap-v4.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&amp;display=swap" rel="stylesheet">
+    <script src="~/scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/scripts/jquery.cookie.js"></script>
+    <script src="~/kendoui-js/jszip.min.js"></script>
+    <script src="~/kendoui-js/kendo.all.min.js"></script>
+    <script src="~/scripts/sammy.min.js"></script>
+    <script src="~/scripts/routing.js"></script>
+    <script src="~/scripts/common/set.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        html, body {
+            font-family: Calibri;
+            min-height: 100% !important;
+            height: 100%;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100% margin: 0
+        }
+        article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+            display: block
+        }
+
+        audio, canvas, progress, video {
+            display: inline-block;
+            vertical-align: baseline
+        }
+
+            audio:not([controls]) {
+                display: none;
+                height: 0
+            }
+
+        .k-form-buttons{
+            visibility:hidden;
+        }
+
+        .k-form .k-form-field{
+            margin-top: 0em;
+        }
+
+        .k-form-field{
+           margin: 0 0 5px;
+        }
+        .k-form-horizontal .k-form-field > .k-form-label, .k-form-horizontal .k-form-field > .k-label{
+            white-space: nowrap;
+            flex-direction: row;
+            flex-flow: row-reverse;
+        }
+
+        .k-input-inner{
+            padding: 2px 5px;
+        }
+
+        .k-form-legend {
+            font-size: 20px;
+            line-height: 31px;
+            color: #df8649;
+            background-image: url(images/modalheaderboxicon.png);
+            padding-left: 15px;
+            background-repeat: no-repeat;
+            background-position: left center;
+        }
+
+        .k-toolbar{
+            margin:1px;
+            padding:0px;
+            
+        }
+        .k-toolbar .k-button {
+            border-radius:0px;
+            min-width:100px;
+            min-height:50px;
+            margin: 0px;
+                align-items: inherit;
+        }
+
+        .k-toolbar .k-button:hover {
+            background-color: #df8649;
+            text-decoration: none;
+        }
+
+        .k-form-field {
+            margin: 0 0 5px;
+        }
+        </style>
+</head>
+<body>
+    <div>
+        <div id="toolbar"></div>
+        <div class="demo-section">
+            <form id="Editform" style="padding:5px;background-color: #f9f9f9;"></form>
+            <div class="demo-section">
+                <div id="brazil">
+                    <div id="grid"></div>
+                </div>
+                <div id="chile">
+                    <div id="grid1"></div>
+                </div>                
+            </div>
+
+            <div id="validation-success"></div>
+        </div>
+    </div>
+    <script src="~/scripts/common/editform.js"></script>
+</body>
+</html>
