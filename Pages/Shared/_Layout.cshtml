@@ -113,8 +113,7 @@
             var routing = new Routing('@Url.Content("~/")', '#page', '');
             routing.init();
         });
-        if ($.cookie('theme')!=='')
-        {
+        if ($.cookie('theme') !== undefined && $.cookie('theme') !== '') {
             var css = $('link[href^="/kendoui-styles/"]')[1];
             css.href = '/kendoui-styles/' + $.cookie('theme') + '.css';
         }

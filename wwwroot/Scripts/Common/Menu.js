@@ -1,6 +1,6 @@
 ﻿$(function () {
     $("#drawer").kendoDrawer({
-        template: "  <input class='form-control k- textbox' placeholder='Search' /> <div id='treeview-left'></div>",
+        template: "  <input class='form-control k- textbox' placeholder='Search' style='padding: 0;' /> <div id='treeview-left'></div>",
         mode: "push",
         mini: false,
         itemClick: function (e) {
@@ -23,9 +23,10 @@
     $("#toolbar").kendoToolBar({
         items: [
             { type: "button", icon: "menu", attributes: { "class": "k-flat" }, click: toggleDrawer },
-            { template: "<h3 style='margin-left: 20px;'>Set Project</h3>" },
-            { template: "<label>Theme:</label><input id='themeShape' />", overflow: "never" },
-        ]
+            { template: "<h3 style='margin-left: 20px;'>Set Project</h3>", attributes: { style: "float: right; margin-top: .4em;" } },
+            { template: "<label>Theme:</label><input id='themeShape' />",  attributes: { style: "float: right; margin- top: .4em;" }},
+        ],
+        resizable: false
     });
     $("#themeShape").kendoDropDownList({
         dataTextField: "text",

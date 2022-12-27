@@ -226,7 +226,7 @@
             //        ]
             //    }
             //});
-            var height = window.innerHeight - 100;
+            var height = window.innerHeight - 170;
             
             $("#grid").kendoGrid({
                 dataSource: dataSource,

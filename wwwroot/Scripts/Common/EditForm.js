@@ -475,7 +475,7 @@
                             },
                             {
                                 field: "Country32",
-                                editor: "DropDownList",
+                                editor: "MultiSelect",
                                 label: "Teşvik Durumu",
                                 validation: { required: true },
                                 colSpan: 2,
